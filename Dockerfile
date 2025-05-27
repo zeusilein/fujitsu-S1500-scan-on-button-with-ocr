@@ -20,8 +20,8 @@ RUN git clone https://github.com/rocketraman/sane-scan-pdf.git
 RUN mkdir /scans
 
 #Add the scanner VID:PID
-RUN   echo "usb 0x04c5 0x162c" >> /etc/sane.d/fujitsu.conf
-RUN   echo "usb 0x04c5 0x162c" >> /etc/scanbd/fujitsu.conf
+RUN   echo "usb 0x04c5 0x11a2" >> /etc/sane.d/fujitsu.conf
+RUN   echo "usb 0x04c5 0x11a2" >> /etc/scanbd/fujitsu.conf
 
 COPY scanbd.conf /etc/scanbd/scanbd.conf
 COPY scan.sh /etc/scanbd/scripts/scan.sh
