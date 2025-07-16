@@ -11,6 +11,7 @@ RUN apt-get update && apt-get upgrade -y && \
         sane \
         sane-utils \
         scanbd \
+        time \
         units \
         util-linux
 
