@@ -1,20 +1,18 @@
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
+
 RUN apt-get update && apt-get upgrade -y && \
-    apt install \
-        git \
+    apt install -y \
+        bc \
+        ghostscript \
+        imagemagick \
+        netpbm \
+        poppler-utils \
         sane \
         sane-utils \
         scanbd \
-        git \
-        imagemagick \
-        netpbm \
-        ghostscript \
-        poppler-utils \
-        imagemagick \
-        util-linux \
-        parallel \
         units \
-        bc -y
+        util-linux
+
 WORKDIR /app
 RUN git clone https://github.com/rocketraman/sane-scan-pdf.git
 RUN mkdir /scans
