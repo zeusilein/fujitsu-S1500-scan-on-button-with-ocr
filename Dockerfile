@@ -13,6 +13,13 @@ RUN apt-get update && apt-get upgrade -y && \
         scanbd \
         time \
         units \
+        tesseract-ocr \
+        tesseract-ocr-osd \
+        tesseract-ocr-eng \
+        tesseract-ocr-deu \
+        tesseract-ocr-fra \
+        tesseract-ocr-ita \
+        tesseract-ocr-spa \
         util-linux
 
 WORKDIR /app
