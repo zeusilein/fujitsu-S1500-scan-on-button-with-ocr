@@ -9,7 +9,7 @@ services:
     volumes:
       - /srv/vms/docker_appdata/ocrscan/scans:/scans
       - /var/run/dbus:/var/run/dbus
-     environment:
+    environment:
       - SCAN_RESOLUTION=300
       - SCAN_MODE=Color
 # alternative modes: Gray, Color, ...
