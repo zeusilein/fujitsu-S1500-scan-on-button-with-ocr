@@ -2,7 +2,7 @@
 
 services:
   scanner:
-    container_name: scanner
+    container_name: zeusi-ocrscan
     build: .
     restart: "always"
     privileged: true
