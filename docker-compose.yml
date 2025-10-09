@@ -7,7 +7,7 @@ services:
     restart: "always"
     privileged: true
     volumes:
-      - /srv/vms/docker_appdata/ocrscanner/scans:/scans
+      - /srv/vms/docker_appdata/ocrscan/scans:/scans
       - /var/run/dbus:/var/run/dbus
      environment:
       - SCAN_RESOLUTION=300
