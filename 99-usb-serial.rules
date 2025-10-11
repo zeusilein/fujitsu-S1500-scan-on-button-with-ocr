@@ -1,0 +1,1 @@
+SUBSYSTEM=="tty", ATTRS{idVendor}=="04c5", ATTRS{idProduct}=="11a2", SYMLINK+="scansnap" 
