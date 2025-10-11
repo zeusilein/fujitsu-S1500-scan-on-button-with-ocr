@@ -1,0 +1,25 @@
+The rule syntax above may work on some distributions, but did not work on mine (Raspbian). Since I never found a single document that explains all the ins and outs, I wrote my own, to be found here. This is what it boils down to.
+1. Find out what's on ttyUSB:
+  With older distros: dmesg | grep ttyUSB
+  With current distros: journalctl -f | grep usb
+
+2. List all attributes of the device:
+  udevadm info --name=/dev/ttyUSBx --attribute-walk
+  (with your device number(s) instead of x, of course). Pick out a unique identifier set, eg idVendor + idProduct. You may also need SerialNumber if you have more than one device with the same idVendor and idProduct. SerialNumbers ought to be unique for each device.
+
+3. Create a file /etc/udev/rules.d/99-usb-serial.rules with something like this line in it: 
+  SUBSYSTEM=="tty", ATTRS{idVendor}=="1234", ATTRS{idProduct}=="5678", SYMLINK+="your_device_name" 
+
+4.  assuming you don't need a serial number there, and of course with the numbers for idVendor and idProduct that you found in step 2. Load the new rule:
+  sudo udevadm trigger
+   Edit 2021, july 6: While this worked fine on said distribution at the time (2015), on Archlinux, and perhaps other distributions, if automatic loading fails, you may need to first do:
+  sudo udevadm control --reload
+
+5. Verify what happened: 
+  ls -l /dev/your_device_name  
+
+10.  will show what ttyUSB number the symlink went to. If it's /dev/ttyUSB1, then verify who owns that and to which group it belongs: 
+  ls -l /dev/ttyUSB1   
+
+12. Then just for the fun of it: 
+  udevadm test -a -p  $(udevadm info -q path -n /dev/your_device_name)
